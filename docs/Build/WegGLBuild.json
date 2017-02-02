@@ -1,0 +1,9 @@
+{
+"TOTAL_MEMORY": 268435456,
+"dataUrl": "WegGLBuild.data.unityweb",
+"asmCodeUrl": "WegGLBuild.asm.code.unityweb",
+"asmMemoryUrl": "WegGLBuild.asm.memory.unityweb",
+"asmFrameworkUrl": "WegGLBuild.asm.framework.unityweb",
+"splashScreenStyle": "Dark",
+"backgroundColor": "#222C36"
+}
