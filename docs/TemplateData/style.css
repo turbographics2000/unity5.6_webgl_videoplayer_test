@@ -1,5 +1,5 @@
 .webgl-content * {border: 0; margin: 0; padding: 0}
-.webgl-content {position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%);}
+.webgl-content {position: absolute; top: 50%; left: 0; -webkit-transform: translate(-50%, -50%); transform: translate(0, -50%);}
 
 .webgl-content .logo, .progress {position: absolute; left: 50%; top: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%);}
 .webgl-content .logo {background: url('progressLogo.Light.png') no-repeat center / contain; width: 154px; height: 130px;}
@@ -16,3 +16,58 @@
 .webgl-content .footer .webgl-logo {background-image: url('webgl-logo.png'); width: 204px; float: left;}
 .webgl-content .footer .title {margin-right: 10px; float: right;}
 .webgl-content .footer .fullscreen {background-image: url('fullscreen.png'); width: 38px; float: right;}
+
+#fucnCallList {
+    position: absolute;
+    width: calc(100% - 960px - 20px);
+    height: 656px;
+    left: 970px;
+    top: 50%;
+    transform: translate(0, -50%);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+#fucnCallListInner {
+    position: absolute;
+    height: calc(100% - 30px);
+    top: 30px;
+    display: block;
+    width: 100%;
+    overflow-y: auto;
+    padding: 4px;
+    box-sizing: border-box;
+}
+
+#fucnCallListTitle {
+    display: block;
+    width: 100%;
+    padding: 4px;
+    text-align: center;
+    height: 26px;
+    line-height: 20px;
+    box-shadow: 0 3px 3px 0 grey;
+    box-sizing: border-box;
+}
+
+.item {
+    padding: 4px;
+}
+
+.log-pattern {
+    position: relative;
+    border: 1px solid black;
+    display: inline-block;
+    padding-right: 40px;
+}
+
+.pattern-counter {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    background: #112233;
+    color: white;
+    text-align: center;
+    transform: translate(0, -50%);
+    padding: 3px;
+    border-radius: 4px;
+}
