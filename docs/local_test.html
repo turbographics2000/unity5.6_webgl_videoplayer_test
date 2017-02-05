@@ -3,6 +3,13 @@
     <head>
         <meta charset="utf-8">
         <script src="three.min.js"></script>
+        <style>
+            html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+            }
+        </style>
     </head>
     <body>
         <script>
@@ -12,7 +19,7 @@
             document.body.appendChild(renderer.domElement);
             var video = document.createElement('video');
             video.onloadedmetadata = threeDSetup;
-            video.src = 'sintel.mp4';
+            video.src = '/sintel.mp4';
             
             function threeDSetup() {
                 video.play();
@@ -25,9 +32,11 @@
                 mesh.scale.set(-1, 1, 1);
                 scene.add(camera);
                 scene.add(mesh);
+                render();
             }
 
             function render() {
+                requestAnimationFrame(render);
                 texture.needsUpdate = true;
                 renderer.render(scene, camera);
             }
