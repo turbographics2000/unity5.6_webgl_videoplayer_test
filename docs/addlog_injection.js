@@ -1,8 +1,7 @@
 function consoleLogInjection(code) {
- debugger;
  code = code.replace(
   'function _JS_Video_Create(url){var str = gameInstance.Module.Pointer_stringify(url);',
-  'function _JS_Video_Create(url){var str = gameInstance.Module.Pointer_stringify(url);console.log(`_JS_Video_create(url=${url})`);'
+  'function _JS_Video_Create(url){var str = gameInstance.Module.Pointer_stringify(url);console.log(`_JS_Video_create(url=${str})`);'
  );
  code = code.replace(
   'function _JS_Video_Time(video){',
@@ -74,7 +73,7 @@ function consoleLogInjection(code) {
  );
  code = code.replace(
   'function _JS_Video_CanPlayFormat(format){',
-  'function _JS_Video_CanPlayFormat(format){console.log(`_JS_Video_CanPlayFormat(format=${format})`);'
+  'function _JS_Video_CanPlayFormat(format){console.log(`_JS_Video_CanPlayFormat(format=${gameInstance.Module.Pointer_stringify(format)})`);'
  );
  code = code.replace(
   'function _JS_Video_Play(video){',
