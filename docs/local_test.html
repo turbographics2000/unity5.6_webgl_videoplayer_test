@@ -25,13 +25,12 @@
                 mesh.scale.set(-1, 1, 1);
                 scene.add(camera);
                 scene.add(mesh);
-                var renderer = new THREE.WebGLRenderer();
             }
 
             function render() {
                 texture.needsUpdate = true;
                 renderer.render(scene, camera);
             }
-            </script>
+        </script>
     </body>
 </html>
