@@ -6,10 +6,56 @@
     <title>Unity WebGL Player | Unity5.6VidepPayerWebGLBuildTest</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
-    <script src="TemplateData/UnityProgress.js"></script>  
+    <script src="TemplateData/UnityProgress.js"></script>
+    <script src="addlog_injection.js"></script>
+    <!--<script>
+      fetch('Build/UnityLoader.js')
+        .then(res => res.text())
+        .then(code => consoleLogInjection(code))
+        .then(code => {
+          return new Promise((resolve, reject) => {
+            var blob = new Blob([code]);
+            debugger;
+            var tag = document.createElement('script');
+            var url = URL.createObjectURL(blob);
+            console.log(url);
+            tag.src = url;
+            tag.onload = resolve();
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+          });
+        }).then(_ => {
+            window.gameInstance = UnityLoader.instantiate("gameContainer", "Build/WebGLDebugBuild.json", {onProgress: UnityProgress});
+        });
+    </script>-->
     <script src="Build/UnityLoader.js"></script>
     <script>
-      var gameInstance = UnityLoader.instantiate("gameContainer", "Build/WebGLDebugBuild.json", {onProgress: UnityProgress});
+      UnityLoader.loadCode = function (e, t, r) {
+        var decoder = new TextDecoder();
+        var code = decoder.decode(e);
+        if(!code.includes('"use asm"')) {
+          console.log('inject');
+          code = consoleLogInjection(code);
+          var encoder = new TextEncoder();
+          e = encoder.encode(code);
+        }
+        var n = [].slice.call(UnityLoader.Cryptography.md5(e)).map(function (e) {
+          return ("0" + e.toString(16)).substr(-2)
+        }).join("")
+          , o = document.createElement("script")
+          , a = URL.createObjectURL(new Blob(['UnityLoader["' + n + '"]=', e], {
+            type: "text/javascript"
+          }));
+        UnityLoader.Blobs[a] = r,
+          o.src = a,
+          o.onload = function () {
+            URL.revokeObjectURL(a),
+              t(n)
+          }
+          ,
+          document.body.appendChild(o)
+      };
+      window.gameInstance = UnityLoader.instantiate("gameContainer", "Build/WebGLDebugBuild.json", { onProgress: UnityProgress });
     </script>
   </head>
   <body>
